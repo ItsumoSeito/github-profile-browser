@@ -5,7 +5,6 @@ import { handleResultStatus } from './handlers';
 const NO_OF_REPOSITORY_RESULTS = 100;
 
 const defaultHeaders = {
-  'User-Agent': 'itsumoseito',
   Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
   'Content-Type': 'application/json',
 };
