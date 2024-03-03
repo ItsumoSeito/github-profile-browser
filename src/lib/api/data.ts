@@ -1,20 +1,17 @@
 import { Repository, User } from '../types';
 import { extractDataFromNode } from '../utils';
-import { handleResultStatus } from './handlers';
+import { authorizeHeaders, handleResultStatus } from './handlers';
 
 const NO_OF_REPOSITORY_RESULTS = 100;
-
-const defaultHeaders = {
-  Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
-  'Content-Type': 'application/json',
-};
 
 export async function getUsers(searchTerm: string): Promise<User[]> {
   let result: undefined | Response;
   try {
     result = await fetch(process.env.GITHUB_API_GRAPHQL_URL as string, {
       method: 'POST',
-      headers: defaultHeaders,
+      headers: authorizeHeaders(
+        process.env.GITHUB_PERSONAL_ACCESS_TOKEN as string
+      ),
       body: JSON.stringify({
         query: `
       {
@@ -56,7 +53,9 @@ export async function getAllUserRepositories(
       runs++;
       result = await fetch(process.env.GITHUB_API_GRAPHQL_URL as string, {
         method: 'POST',
-        headers: defaultHeaders,
+        headers: authorizeHeaders(
+          process.env.GITHUB_PERSONAL_ACCESS_TOKEN as string
+        ),
         body: JSON.stringify({
           query: `
       {

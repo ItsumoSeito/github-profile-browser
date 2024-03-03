@@ -26,3 +26,10 @@ export async function getUsersWithRepositories(searchTerm: string) {
   );
   return usersWithRepositories;
 }
+
+export function authorizeHeaders(token: string) {
+  return {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  };
+}
