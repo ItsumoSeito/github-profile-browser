@@ -25,3 +25,7 @@ To run the unit tests run `pnpm run test`.
 
 To run the e2e tests, first create a production build with `pnpm run build` and then start it locally with `pnpm run start`.
 Then run `npx playwright test --ui` to run through the e2e tests locally.
+
+## Deployment
+
+The app is deployed under [https://github-profile-browser.vercel.app/](https://github-profile-browser.vercel.app/)
